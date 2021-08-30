@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Calculator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <header>
+        <h1>Salary Calculator</h1>
+    </header>
+
+    <!-- Employee Input -->
+    <div class="add-employee">
+        <h3>Add Employee</h3>
+        <input id="firstname" type="text" placeholder="First Name">
+        <input id="lastname" type="text" placeholder="Last Name">
+        <input id="id" type="text" placeholder="ID">
+        <input id="title" type="text" placeholder="Title">
+        <input id="annualsalary" type="number" placeholder="Annual Salary">
+        <button id="submit-button">Submit</button> <br><br>
+    </div>
+
+    <!-- Employee Table -->
+    <div class="employee-table">
+        <h3>Employees</h3>
+
+        <table id="tableEmployee">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>ID</th>
+                <th>Title</th>
+                <th id="annual-salary">Annual Salary</th>
+                <th></th>
+            </tr>
+        </table>
+        <h2 id="monthly-total"></h2>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

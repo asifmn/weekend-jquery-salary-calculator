@@ -4,7 +4,7 @@
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+Application to calculate an organization's monthly employee cost.
 
 Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
 
@@ -12,16 +12,16 @@ Additional README details can be found [here](https://github.com/PrimeAcademy/re
 ## Checklist
 - [x] html, client.js, jquery.js, log “DOM ready”
 - [x] building template in html (inputs / table)
-- [ ] add some styling for the table
-- [x ] button click that logs to the console
-- [x ] assign input to variables
-- [ ] append to the DOM using those variables
-- [ ] global variables for monthly cost
-- [ ] append monthly cost to the DOM
-- [ ] logic for background color on the monthly costs
-- [ ] delete button that removes a row
+- [x] add some styling for the table
+- [x] button click that logs to the console
+- [x] assign input to variables
+- [x] append to the DOM using those variables
+- [x] global variables for monthly cost
+- [x] append monthly cost to the DOM
+- [x] logic for background color on the monthly costs
+- [x] delete button that removes a row
 
-### stretch
-- [ ] update the total cost on delete of a row
-- [ ] array and objects to hold information
-- [ ] alert the user of missing fields
+### Stretch
+- [x] update the total cost on delete of a row
+- [x] array and objects to hold information
+- [x] alert the user of missing fields
