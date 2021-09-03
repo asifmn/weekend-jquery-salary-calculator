@@ -1,54 +1,106 @@
+// ## Checklist
+// - [x] html, client.js, jquery.js, log “DOM ready”
+// - [x] building template in html (inputs / table)
+// - [x] add some styling for the table
+// - [x] button click that logs to the console
+// - [x] assign input to variables
+// - [x] append to the DOM using those variables
+// - [x] global variables for monthly cost
+// - [x] append monthly cost to the DOM
+// - [x] logic for background color on the monthly costs
+// - [x] delete button that removes a row
+
+// ### Stretch
+// - [ ] update the total cost on delete of a row
+// - [x] array and objects to hold information
+// - [ ] alert the user of missing fields
+
+
 $(document).ready(readyNow);
 
-
 function readyNow() {
+    console.log('DOM ready!');
     $('#submit-button').on('click', addEmployee);
-    $('#tableEmployee').on('click', '#delete-button', removeEmployee);
+    $(document).on('click', '#delete-button', removeEmployee);
 }
 
-let monthlyTotal = [];
+let employees = [];
+let monthlyCost = 0;
+
 function addEmployee() {
 
-    // create employee object
-    let employee = {
-        firstName: $('#firstname').val(),
-        lastName: $('#lastname').val(),
-        title: $('#id').val(),
-        employeeID: $('#title').val(),
-        salary: $('#annualsalary').val()
-    }
+    console.log('Submit button clicked!');
 
-    $('#tableEmployee').append(`<tr>
-    <td>${lastName}, ${firstName}</td>
-    <td>${title}</td>
-    <td>${employeeID}</td>
-    <td id="annualsalary">${salary}</td>
-    <td><button id= "delete-button">Delete</button></td></tr>`);
+    // storing info into emp object
+    employee = getEmployee();
 
-    // tally for sum of monthly total
-    monthlyTotal.push(annualSalary);
-    let total = 0;
-    for (i of monthlyTotal) {
-        total += Number(i)
-    }
+    // Pushing employee info to employees array
+    employees.push(employee);
 
-    total /= 12;
+    // append to DOM
+    appendToDOM();
 
-    //turns total red if over $20,000
-    if (total > 20000) {
-        $('#monthly-total').text(`Monthly Total:$ ${(total).toFixed(2)}`).css('background-color', 'red')
+    // clear input fields
+    clearInput();
+
+    // logic for background color on the monthly costs
+    monthlyTotalCost();
+    if (monthlyCost > 20000) {
+        $('#monthly-total').text(`Monthly Total:$ ${(monthlyCost).toFixed(2)}`);
+        $('#monthly-total').css('background-color', 'red')
     } else {
-        $('#monthly-total').text(`Monthly Total:$ ${(total).toFixed(2)}`);
+        $('#monthly-total').text(`Monthly Total:$ ${(monthlyCost).toFixed(2)}`);
     }
-
-    //clear input fields
-    $('#firstname').val('');
-    $('#lastname').val('');
-    $('#id').val('');
-    $('#title').val('');
-    $('#annualsalary').val('');
 }
 
+function getEmployee() {
+    let employee = {
+        firstName: $('#first-name').val(),
+        lastName: $('#last-name').val(),
+        employeeID: $('#id').val(),
+        title: $('#title').val(),
+        salary: Number($('#annual-salary').val())
+    }
+    return employee;
+}
+
+function appendToDOM() {
+    // Empty the table
+    $('#tableEmployee').empty();
+    
+    // Loop though employees array and append to DOM
+    for (let employee of employees) {
+        $('#tableEmployee').append(`
+            <tr>
+                <td>${employee.firstName}</td>
+                <td>${employee.lastName}</td>
+                <td>${employee.employeeID}</td>
+                <td>${employee.title}</td>
+                <td>${employee.salary}</td>
+                <td><button id= "delete-button">Delete</button></td>
+            </tr>
+    `);
+    }
+}
+
+
+function monthlyTotalCost() {
+    for (let employee of employees) {
+        monthlyCost += (employee.salary / 12);
+    }
+}
+
+function clearInput() {
+    //clearing input and focus cursor 
+    $('input').val('');
+    $('#first-name').focus();
+}
+
+// delete button that removes a row
 function removeEmployee() {
+    console.log('Delete button clicked!');
     $(this).parent().parent().remove();
 }
+
+
+
