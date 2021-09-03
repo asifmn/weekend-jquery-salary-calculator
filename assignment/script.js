@@ -24,7 +24,10 @@ function readyNow() {
     $(document).on('click', '#delete-button', removeEmployee);
 }
 
+// global array for employees data
 let employees = [];
+
+// global variables for monthly cost
 let monthlyCost = 0;
 
 function addEmployee() {
@@ -44,12 +47,12 @@ function addEmployee() {
     clearInput();
 
     // logic for background color on the monthly costs
-    monthlyTotalCost();
+    monthlyCost = monthlyTotalCost();
     if (monthlyCost > 20000) {
-        $('#monthly-total').text(`Monthly Total:$ ${(monthlyCost).toFixed(2)}`);
+        $('#monthly-total').text(`Monthly Total: $${(monthlyCost).toFixed(2)}`);
         $('#monthly-total').css('background-color', 'red')
     } else {
-        $('#monthly-total').text(`Monthly Total:$ ${(monthlyCost).toFixed(2)}`);
+        $('#monthly-total').text(`Monthly Total: $${(monthlyCost).toFixed(2)}`);
     }
 }
 
@@ -85,9 +88,11 @@ function appendToDOM() {
 
 
 function monthlyTotalCost() {
+    let totalCost = 0;
     for (let employee of employees) {
-        monthlyCost += (employee.salary / 12);
+        totalCost += (employee.salary / 12);
     }
+    return totalCost;
 }
 
 function clearInput() {
